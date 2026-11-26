@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wendi — Projects & Portfolio</title>
+<meta name="description" content="Wendi's portfolio: robotics, engineering and creative projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== Colours: change these to restyle the whole site ===== */
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #5f6368;
+    --line: #e6e1da;
+    --accent: #e8643c;      /* main highlight colour */
+    --accent-soft: #fde7de;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141416; --surface: #1d1d21; --text: #f2f2f2; --muted: #a3a3ad;
+      --line: #2c2c33; --accent: #ff8a5c; --accent-soft: #3a241c;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 Inter, system-ui, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; line-height: 1.15; margin: 0; }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-family: "Space Grotesk"; font-weight: 700; text-decoration: none; font-size: 19px; }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+  nav ul a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15px; }
+  nav ul a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { padding: 88px 0 72px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+  .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(40px, 6vw, 64px); }
+  .hero p { color: var(--muted); font-size: 19px; max-width: 34ch; margin: 18px 0 28px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .tag { background: var(--accent-soft); color: var(--accent); padding: 5px 12px; border-radius: 99px; font-size: 14px; font-weight: 600; }
+  .btn { display: inline-block; background: var(--text); color: var(--bg); padding: 12px 22px; border-radius: 10px; text-decoration: none; font-weight: 600; margin-right: 10px; }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .portrait { aspect-ratio: 4/5; border-radius: 20px; overflow: hidden; background: linear-gradient(135deg, var(--accent-soft), var(--line)); display: grid; place-items: center; color: var(--muted); font-size: 15px; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 32px; gap: 16px; }
+  .section-head h2 { font-size: 36px; }
+  .section-head p { color: var(--muted); margin: 0; max-width: 40ch; }
+
+  /* Projects */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; }
+  .card .img { aspect-ratio: 16/10; background: linear-gradient(135deg, var(--accent-soft), var(--line)); display: grid; place-items: center; color: var(--muted); font-size: 14px; }
+  .card .img img { width: 100%; height: 100%; object-fit: cover; }
+  .card .body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .card h3 { font-size: 22px; }
+  .card .meta { color: var(--accent); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+  .card p { margin: 0; color: var(--muted); font-size: 16px; }
+  .card .learned { font-size: 15px; border-left: 3px solid var(--accent); padding-left: 12px; color: var(--text); }
+  .status { align-self: flex-start; font-size: 13px; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+  .about p { margin-top: 0; }
+  .interests { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .interest { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+  .interest strong { display: block; font-family: "Space Grotesk"; font-size: 17px; }
+  .interest span { color: var(--muted); font-size: 14px; }
+
+  /* Resume */
+  .timeline { display: grid; gap: 0; }
+  .row { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .row .when { color: var(--muted); font-size: 15px; }
+  .row h3 { font-size: 19px; margin-bottom: 4px; }
+  .row p { margin: 0; color: var(--muted); font-size: 16px; }
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .skills .tag { background: var(--surface); color: var(--text); border: 1px solid var(--line); font-weight: 500; }
+
+  footer { padding: 56px 0; border-top: 1px solid var(--line); text-align: center; color: var(--muted); }
+  footer h2 { color: var(--text); font-size: 30px; margin-bottom: 10px; }
+  footer a.mail { color: var(--accent); font-weight: 600; }
+
+  @media (max-width: 760px) {
+    nav ul { gap: 14px; }
+    nav ul li.hide-sm { display: none; }
+    .hero, .about { grid-template-columns: 1fr; }
+    .hero { padding: 48px 0; }
+    .portrait { max-width: 320px; }
+    .grid { grid-template-columns: 1fr; }
+    .section-head { flex-direction: column; align-items: start; }
+    .row { grid-template-columns: 1fr; gap: 4px; }
+    .interests { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">wendi<span>.lol</span></a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li class="hide-sm"><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <!-- ===== HOME ===== -->
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Future mechanical engineer</div>
+      <h1>Hi, I'm Wendi. I like building things that move.</h1>
+      <p>High school student working on robots, code, and music. Here's what I've made, and what I learned making it.</p>
+      <div class="tags">
+        <span class="tag">Robotics</span><span class="tag">Coding</span><span class="tag">Piano</span><span class="tag">Photography</span>
+      </div>
+      <a class="btn" href="#projects">See my projects</a>
+      <a class="btn ghost" href="#resume">Resume</a>
+    </div>
+    <!-- Replace with: <img src="me.jpg" alt="Photo of Wendi"> -->
+    <div class="portrait">Your photo here</div>
+  </header>
+
+  <!-- ===== PROJECTS: copy a whole <article> block to add another ===== -->
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <p>Each one: what it is, what I did, and what I learned.</p>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="img">Robot photo here</div>
+        <div class="body">
+          <div class="meta">Robotics · Team project</div>
+          <h3>[Robot name]</h3>
+          <p>[One or two sentences: what the robot does and what problem it solves.]</p>
+          <p><strong>My role:</strong> [e.g. designed the arm mechanism in CAD, wrote the drive code]</p>
+          <p class="learned">[What failed, what I changed, what I learned.]</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="img">Pedal photo or sketch here</div>
+        <div class="body">
+          <div class="meta">Mechanical · Electronics · Code</div>
+          <h3>Piano page-turner pedal</h3>
+          <p>A foot pedal that turns my digital sheet music, so I don't have to stop playing.</p>
+          <p><strong>Built with:</strong> [Arduino / servo / Bluetooth, 3D-printed case]</p>
+          <p class="learned">[What I learned designing it.]</p>
+          <span class="status">In progress</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="img">Lightstick photo here</div>
+        <div class="body">
+          <div class="meta">Electronics · Design</div>
+          <h3>Music-reactive lightstick</h3>
+          <p>A K-pop style lightstick that changes colour with the beat of the music.</p>
+          <p><strong>Built with:</strong> [LEDs, microphone, Arduino, 3D-printed shell]</p>
+          <p class="learned">[What I learned.]</p>
+          <span class="status">Planned</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="img">Screenshot of this site</div>
+        <div class="body">
+          <div class="meta">Web · Code</div>
+          <h3>This website</h3>
+          <p>Designed and set up my own site on my own domain, wendi.lol.</p>
+          <p><strong>Built with:</strong> HTML, CSS, Cloudflare Pages</p>
+          <p class="learned">[What I learned setting up a domain and hosting.]</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="section-head"><h2>About me</h2></div>
+    <div class="about">
+      <div>
+        <p>[Write 3 to 5 sentences in your own voice. For example: I'm a high school student in [city] who has loved taking things apart since I was little. Robotics is where I learned that the first design almost never works, and that's the fun part.]</p>
+        <p>[Why mechanical engineering? One or two sentences.]</p>
+      </div>
+      <div class="interests">
+        <div class="interest"><strong>Robotics</strong><span>[team / club name]</span></div>
+        <div class="interest"><strong>Piano</strong><span>[years playing / level]</span></div>
+        <div class="interest"><strong>Coding</strong><span>[languages you use]</span></div>
+        <div class="interest"><strong>Learning Korean</strong><span>and lots of K-pop</span></div>
+        <div class="interest"><strong>Photography</strong><span>I shot the photos on this site</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESUME ===== -->
+  <section id="resume">
+    <div class="section-head">
+      <h2>Resume</h2>
+      <!-- Optional: link a PDF, e.g. <a class="btn ghost" href="resume.pdf">Download PDF</a> -->
+    </div>
+    <div class="timeline">
+      <div class="row"><div class="when">[2024 – now]</div><div><h3>[Robotics team], [role]</h3><p>[One line on what you did.]</p></div></div>
+      <div class="row"><div class="when">[Year]</div><div><h3>[Award or competition]</h3><p>[Result.]</p></div></div>
+      <div class="row"><div class="when">[Year]</div><div><h3>[Club, volunteering or job]</h3><p>[One line.]</p></div></div>
+      <div class="row"><div class="when">[Year]</div><div><h3>Piano, [level / exam]</h3><p>[One line.]</p></div></div>
+    </div>
+    <div class="skills">
+      <span class="tag">[CAD: Fusion 360 / Onshape]</span><span class="tag">[Arduino]</span><span class="tag">[Python]</span><span class="tag">[3D printing]</span><span class="tag">[Korean, beginner]</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== CONTACT ===== -->
+<footer id="contact">
+  <div class="wrap">
+    <h2>Say hi</h2>
+    <p>[Your contact email, or remove this line]</p>
+    <p style="font-size:14px;margin-top:32px">© 2026 Wendi · wendi.lol</p>
+  </div>
+</footer>
+
+</body>
+</html>
